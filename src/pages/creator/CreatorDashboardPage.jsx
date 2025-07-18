@@ -40,6 +40,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/useAuth";
 import { getMyCollections, deleteCollection } from "../../services/collectionService";
+import CreatorNavigation from "../../components/CreatorNavigation";
+import add_button from "../../assets/add_button.png";
+
+
 
 export default function CreatorDashboardPage() {
   const { user, logout } = useAuth();
@@ -76,36 +80,48 @@ export default function CreatorDashboardPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+     <><CreatorNavigation /><div className="p-6 space-y-6">
+
       {/* Header Section */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-800">
-          Welcome, {user?.firstName} 🎨
-        </h1>
-        <button
-          onClick={() => {
-            logout();
-            navigate("/login");
-          }}
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-        >
-          Logout
-        </button>
-      </div>
+
+     
 
       {/* Action Buttons */}
-      <div className="flex gap-4">
+      {/* <div className="flex gap-4">
         <button
           onClick={() => navigate("/creator-dashboard/create-collection")}
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
         >
           + Create Collection
         </button>
+        
+          <img
+            src={add_button}
+            alt="Add Button"
+           className="h-20 w-20 object-cover cursor-pointer transition-all duration-300 hover:shadow-[0_0_20px_4px_rgba(34,197,94,0.6)]"
+            onClick={() => navigate("/creator-dashboard/create-collection")}
+            
+          />
+      </div> */}
+      <div
+        className="flex items-center gap-4 cursor-pointer"
+        onClick={() => navigate("/creator-dashboard/create-collection")}
+      >
+        <img
+          src={add_button}
+          alt="Add Button"
+          className="h-20 w-20 object-cover transition-all duration-300 hover:shadow-[0_0_20px_4px_rgba(34,197,94,0.6)]"
+        />
+        <span className="text-lg font-semibold text-gray-800 hover:text-green-600 transition">
+          Create Collection
+        </span>
       </div>
+
 
       {/* Collections Section */}
       <div>
         <h2 className="text-2xl font-semibold mb-4">Your Collections</h2>
+
 
         {loading ? (
           <p>Loading...</p>
@@ -123,25 +139,20 @@ export default function CreatorDashboardPage() {
                 <img
                   src={`http://localhost:5050/${collection.coverImage}`}
                   alt={collection.title}
-                  className="w-full h-40 object-cover rounded mb-3"
-                />
+                  className="w-full h-40 object-cover rounded mb-3" />
                 <h3 className="text-xl font-semibold">{collection.title}</h3>
                 <p className="text-gray-600 mb-3">{collection.description}</p>
 
                 <div className="flex flex-col gap-2">
                   <button
-                    onClick={() =>
-                      navigate(`/collections/${collection._id}/add-product`)
-                    }
+                    onClick={() => navigate(`/collections/${collection._id}/add-product`)}
                     className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 text-sm"
                   >
                     + Add Product
                   </button>
 
                   <button
-                    onClick={() =>
-                      navigate(`/collections/${collection._id}`)
-                    }
+                    onClick={() => navigate(`/collections/${collection._id}`)}
                     className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm"
                   >
                     Collection Details
@@ -159,6 +170,6 @@ export default function CreatorDashboardPage() {
           </div>
         )}
       </div>
-    </div>
+    </div></>
   );
 }

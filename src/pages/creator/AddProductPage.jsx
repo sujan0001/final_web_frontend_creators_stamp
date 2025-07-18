@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { createProduct } from "../../services/productService";
+import CreatorNavigation from "../../components/CreatorNavigation";
 
 export default function AddProductPage() {
   const { collectionId } = useParams();
@@ -51,7 +52,7 @@ export default function AddProductPage() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6">
+    <><CreatorNavigation /><div className="max-w-xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-4">Add Product to Collection</h2>
       {error && <p className="text-red-500 mb-2">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -61,8 +62,7 @@ export default function AddProductPage() {
             type="text"
             className="w-full border rounded p-2"
             value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+            onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
           <label className="block mb-1 font-medium">Description</label>
@@ -70,8 +70,7 @@ export default function AddProductPage() {
             className="w-full border rounded p-2"
             rows="3"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+            onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div>
           <label className="block mb-1 font-medium">Original Price *</label>
@@ -79,16 +78,14 @@ export default function AddProductPage() {
             type="number"
             className="w-full border rounded p-2"
             value={originalPrice}
-            onChange={(e) => setOriginalPrice(e.target.value)}
-          />
+            onChange={(e) => setOriginalPrice(e.target.value)} />
         </div>
         <div>
           <label className="block mb-1 font-medium">Image *</label>
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
+            onChange={(e) => setImage(e.target.files[0])} />
         </div>
         <button
           type="submit"
@@ -98,6 +95,6 @@ export default function AddProductPage() {
           {loading ? "Creating..." : "Create Product"}
         </button>
       </form>
-    </div>
+    </div></>
   );
 } 

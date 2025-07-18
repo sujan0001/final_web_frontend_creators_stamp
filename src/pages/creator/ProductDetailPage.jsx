@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../services/productService";
+import CreatorNavigation from "../../components/CreatorNavigation";
 
 export default function ProductDetailPage() {
   const { productId } = useParams();
@@ -23,12 +24,11 @@ export default function ProductDetailPage() {
   if (!product) return <div>Loading...</div>;
 
   return (
-    <div className="p-6">
+    <><CreatorNavigation /><div className="p-6">
       <img
         src={`http://localhost:5050/${product.image}`}
         alt={product.name}
-        className="w-full max-w-md rounded shadow mb-4"
-      />
+        className="w-full max-w-md rounded shadow mb-4" />
       <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
       <p className="text-gray-700 mb-2">{product.description}</p>
       <p className="text-blue-700 font-semibold">Rs. {product.originalPrice}</p>
@@ -37,6 +37,6 @@ export default function ProductDetailPage() {
           By: {product.creator.firstName} {product.creator.lastName}
         </p>
       )}
-    </div>
+    </div></>
   );
 }

@@ -100,6 +100,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
+import CreatorNavigation from "../../components/CreatorNavigation";
 
 export default function CollectionDetailPage() {
   const { collectionId } = useParams();
@@ -170,16 +171,21 @@ export default function CollectionDetailPage() {
   if (loadingCollection) return <div className="p-4">Loading collection details...</div>;
 
   return (
-    <div className="p-6">
+    <><CreatorNavigation /><div className="p-6">
       <div className="mb-6">
         <img
           src={`http://localhost:5050/${collection.coverImage}`}
           alt={collection.title}
-          className="w-full h-60 object-cover rounded mb-4"
-        />
+          className="w-full h-60 object-cover rounded mb-4" />
         <h2 className="text-3xl font-bold">{collection.title}</h2>
         <p className="text-gray-700">{collection.description}</p>
       </div>
+      <button
+        onClick={() => navigate(`/collections/${collection._id}/add-product`)}
+        className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 text-sm"
+      >
+        + Add Product
+      </button>
 
       <h3 className="text-2xl font-semibold mb-4">Your Products in this Collection</h3>
 
@@ -197,28 +203,28 @@ export default function CollectionDetailPage() {
               <img
                 src={`http://localhost:5050/${product.image}`}
                 alt={product.name}
-                className="w-full h-40 object-cover mb-2 rounded"
-              />
+                className="w-full h-40 object-cover mb-2 rounded" />
               <h4 className="font-semibold text-lg">{product.name}</h4>
               <p className="text-sm text-gray-600">{product.description}</p>
               <p className="font-bold text-blue-700 mt-1">Rs. {product.originalPrice}</p>
 
               <div className="flex gap-2 mt-3">
                 {/* <button
-                  onClick={() => navigate(`/product/${product._id}`)}
+                      onClick={() => navigate(`/product/${product._id}`)}
+                      className="px-4 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                    >
+                      View Details
+                    </button> */}
+
+                <button
+                  onClick={() => {
+                    console.log("Navigating to product:", product._id);
+                    navigate(`/product/${product._id}`);
+                  } }
                   className="px-4 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                   View Details
-                </button> */}
-                <button
-                    onClick={() => {
-                        console.log("Navigating to product:", product._id);
-                        navigate(`/product/${product._id}`);
-                    }}
-                    className="px-4 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                    View Details
-                    </button>
+                </button>
                 <button
                   onClick={() => handleDeleteProduct(product._id)}
                   className="px-4 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
@@ -230,6 +236,6 @@ export default function CollectionDetailPage() {
           ))}
         </div>
       )}
-    </div>
+    </div></>
   );
 }

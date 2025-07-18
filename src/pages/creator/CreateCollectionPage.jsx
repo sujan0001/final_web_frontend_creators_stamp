@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createCollection } from "../../services/collectionService";
+import CreatorNavigation from "../../components/CreatorNavigation";
 
 export default function CreateCollectionPage() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function CreateCollectionPage() {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
+    <><CreatorNavigation /><div className="p-6 max-w-lg mx-auto">
       <h2 className="text-xl font-semibold mb-4">Create New Collection</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -33,8 +34,7 @@ export default function CreateCollectionPage() {
           className="w-full p-2 border"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+          required />
         <textarea
           placeholder="Description"
           className="w-full p-2 border"
@@ -44,8 +44,7 @@ export default function CreateCollectionPage() {
         <input
           type="file"
           accept="image/*"
-          onChange={(e) => setCoverImage(e.target.files[0])}
-        />
+          onChange={(e) => setCoverImage(e.target.files[0])} />
         <button
           type="submit"
           className="px-4 py-2 bg-blue-600 text-white rounded"
@@ -53,6 +52,6 @@ export default function CreateCollectionPage() {
           Create Collection
         </button>
       </form>
-    </div>
+    </div></>
   );
 }

@@ -93,6 +93,7 @@ import logo from "../assets/hehe.png";
 import defaultProfile from "../assets/default-profile.png";
 import { useState } from "react";
 
+
 export default function Nevigate() {
   const { logout, user } = useAuth(); // ✅ Get user from context
   const navigate = useNavigate();
@@ -100,7 +101,7 @@ export default function Nevigate() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -130,6 +131,12 @@ export default function Nevigate() {
           className="text-gray-700 hover:text-blue-600 font-medium"
         >
           My Ownership
+        </button>
+         <button
+          onClick={() => navigate("/creator/requests")}
+          className="text-gray-700 hover:text-blue-600 font-medium"
+        >
+          Requests
         </button>
 
         {/* Right: Profile Dropdown */}

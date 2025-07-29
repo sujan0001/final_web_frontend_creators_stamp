@@ -76,6 +76,13 @@ export default function CreatorNavigation() {
         >
           Create Collection
         </button>
+        <button
+          onClick={() => navigate("/creator/requests")}
+          className="text-gray-700 hover:text-blue-600 font-medium"
+        >
+          Requests
+        </button>
+
 
         {/* Profile Dropdown */}
         <div className="relative">

@@ -102,6 +102,8 @@ import MyOwnedProducts from "../components/MyOwnedProducts";
 import ConsumerProductDetails from "../components/CustomerProductDetails";
 import HomePage from "../pages/HomePage";
 import CollectionCarasoul from "../components/CollectionCarasoul";
+// for permission
+import PermissionCreator from "../components/PermissionCreator";
 
 
 
@@ -196,6 +198,9 @@ export default function AppRouter() {
         <Route path="/consumer/product/:id" element={<ConsumerProductDetails />} />
 
         <Route path="/demo" element={<CollectionCarasoul />} />
+
+        {/* new for permission route */}
+        <Route path="/creator/requests" element={<PermissionCreator />} />
 
    
 

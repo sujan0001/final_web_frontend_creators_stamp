@@ -79,6 +79,9 @@ export default function DashboardPage() {
         <div className="w-full md:w-[80%]">
           <CollectionList />
           <div className="py-8">
+            <p className="font-bold text-gray-800 text-2xl my-4">
+              Newly Listed Products
+            </p>
           <AvailableProducts /></div>
         </div>
       </div>
